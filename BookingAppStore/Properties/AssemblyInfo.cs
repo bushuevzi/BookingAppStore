@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется следующим образом
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных с этой сборкой.
-[assembly: AssemblyTitle("BookingAppStore")]
+[assembly: AssemblyTitle("BookingAppStore2")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("BookingAppStore")]
+[assembly: AssemblyProduct("BookingAppStore2")]
 [assembly: AssemblyCopyright("© , 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для ID библиотеки типов typelib, если этот проект видим для COM
-[assembly: Guid("6131f716-aa07-43d9-8165-2d00fef6a8a7")]
+[assembly: Guid("3351e510-6d99-4daa-b815-5df1212c6f3a")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //
