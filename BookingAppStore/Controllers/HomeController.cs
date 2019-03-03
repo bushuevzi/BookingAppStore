@@ -2,7 +2,9 @@
 using BookingAppStore.Util;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,15 +15,31 @@ namespace BookingAppStore.Controllers
         //чтобы работать с базой данных (вытаскивать от туда данные нужно создать переменную контекста базы)
         BookContext db = new BookContext();
 
+        //public ActionResult Index()
+        //{
+        //    //берем коллекцию всех книг
+        //    var books = db.Books;
+        //    //передаем ее в представление
+        //    ViewBag.Books = books;
+        //    HttpContext.Response.Cookies["token"].Value = "user-1234567890";
+        //    return View();
+        //}
+
         public ActionResult Index()
         {
-            //берем коллекцию всех книг
-            var books = db.Books;
-            //передаем ее в представление
+            IEnumerable<Book> books = db.Books.ToList();
             ViewBag.Books = books;
-            HttpContext.Response.Cookies["token"].Value = "user-1234567890";
             return View();
         }
+
+        //асинхронный метод так как используем подключение к Базе данных и это занимает время
+        public async Task<ActionResult> BookList()
+        {
+            IEnumerable<Book> books = await db.Books.ToListAsync();
+            ViewBag.Books = books;
+            return View("Index");
+        }
+
         public string GetToken()
         {
             string id = HttpContext.Request.Cookies["token"].Value;
