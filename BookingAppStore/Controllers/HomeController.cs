@@ -29,7 +29,16 @@ namespace BookingAppStore.Controllers
         {
             IEnumerable<Book> books = db.Books.ToList();
             ViewBag.Books = books;
+
+            SelectList authors = new SelectList(db.Books, "Author", "Name");
+            ViewBag.Authors = authors;
             return View();
+        }
+
+        [HttpPost]
+        public string GetForm(string author)
+        {
+            return author;
         }
 
         //асинхронный метод так как используем подключение к Базе данных и это занимает время
@@ -46,17 +55,62 @@ namespace BookingAppStore.Controllers
             return id.ToString();
         }
 
-        public ActionResult GetBook()
+        //public ActionResult GetBook()
+        //{
+        //    return View();
+        //}
+
+        public ActionResult GetBook(int id)
+        {
+            Book b = db.Books.Find(id);
+            if (b == null)
+                return HttpNotFound();
+            return View(b);
+        }
+
+
+        public ActionResult CreateBook()
         {
             return View();
         }
 
+        [HttpPost]
+        public ActionResult CreateBook(Book book)
+        {
+            db.Books.Add(book);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult EditBook(int? id)
+        {
+            if(id == null)
+            {
+                return HttpNotFound();
+            }
+            Book book = db.Books.Find(id);
+            if (book != null)
+            {
+                return View(book);
+            }
+            return HttpNotFound();
+        }
 
         [HttpPost]
-        public string GetBook(string title, string author)
+        public ActionResult EditBook(Book book)
         {
-            return $"{title} {author}";
+            db.Entry(book).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
+
+
+        //[HttpPost]
+        //public string GetBook(string title, string author)
+        //{
+        //    return $"{title} {author}";
+        //}
 
         public string GetContext()
         {
@@ -119,6 +173,20 @@ namespace BookingAppStore.Controllers
             return $"Спасибо, {purchase.Person} за покупку!";
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Book book)
+        {
+            db.Books.Add(book);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -131,6 +199,12 @@ namespace BookingAppStore.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

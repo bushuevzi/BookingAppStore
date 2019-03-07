@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace BookingAppStore2
+namespace BookingAppStore
 {
     public class BundleConfig
     {

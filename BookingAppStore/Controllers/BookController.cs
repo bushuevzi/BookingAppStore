@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace BookingAppStore2.Controllers
+namespace BookingAppStore.Controllers
 {
     public class BookController : Controller
     {

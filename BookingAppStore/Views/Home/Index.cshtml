@@ -24,3 +24,22 @@
         }
     </table>
 </div>
+
+@using (Html.BeginForm("GetForm", "Home", FormMethod.Post))
+{
+    @Html.DropDownList("author", ViewBag.Authors as SelectList)
+    <input type="submit" value="Send"/>
+}
+
+
+@{ 
+    string[] cities = new string[] { "London", "Paris", "Moscow" };
+}
+
+@{ 
+    string[] countries = new string[] { "England", "France", "Russian" };
+}
+
+@using BookingAppStore.Helpers
+@Html.CreateList(cities)
+@Html.CreateList(countries)

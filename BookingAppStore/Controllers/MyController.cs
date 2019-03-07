@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace BookingAppStore2.Controllers
+namespace BookingAppStore.Controllers
 {
     public class MyController : IController
     {

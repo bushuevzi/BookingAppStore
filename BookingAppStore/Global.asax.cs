@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace BookingAppStore2
+namespace BookingAppStore
 {
     public class MvcApplication : System.Web.HttpApplication
     {

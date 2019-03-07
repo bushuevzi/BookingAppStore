@@ -1,24 +1,44 @@
-﻿
+﻿@model BookingAppStore.Models.Purchase
 @{
     ViewBag.Title = "Покупка книги";
 }
 
 <div>
     <h3>Форма оформления покупки</h3>
+@using (Html.BeginForm(actionName: "Buy", controllerName: "Home", method: FormMethod.Post))
+{
+    @Html.Hidden(name: "BookId", value: ViewBag.BookId as string)
+        <table>
+        <tr>
+            <td>@Html.Label("Person", "Введите свое имя ")</td>
+            <td>@Html.EditorFor(m=>m.Person)</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("Address", "Введите свой адрес ")</td>
+            <td>@Html.EditorFor(m=>m.Address)</td>
+        </tr>
+        <tr><td><input type="submit" value="Отправить" /></td></tr>
+    </table>
+}
+</div>
+
+
+@*<div>
+    <h3>Форма оформления покупки</h3>
     <form method="post">
-        <input type="hidden" value="@ViewBag.BookId" name="BookId" />
+        <input type="hidden" value="@viewbag.bookid" name="bookid" />
         <table>
             <tr>
-                <td><p>Введите свое имя </p></td>
-                <td><input type="text" name="Person" value="" /></td>
+                <td><p>введите свое имя </p></td>
+                <td><input type="text" name="person" value="" /></td>
             </tr>
             <tr>
-                <td><p>Введите свой адрес: </p></td>
-                <td><input type="text" name="Address" value="" /></td>
+                <td><p>введите свой адрес: </p></td>
+                <td><input type="text" name="address" value="" /></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Отправить" /></td>
+                <td><input type="submit" value="отправить" /></td>
             </tr>
         </table>
     </form>
-</div>
+</div>*@
